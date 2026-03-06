@@ -1,14 +1,12 @@
-require('dotenv').config();
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    databaseURL: process.env.databaseURL,
-    projectId: process.env.projectId,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId,
-    appId: process.env.appId
+    apiKey: "AIzaSyD3-HP9p01NwUW1DNVaoM4uSYigTFz8Rrw",
+    authDomain: "lacs-room-control-system.firebaseapp.com",
+    databaseURL: "https://lacs-room-control-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "lacs-room-control-system",
+    storageBucket: "lacs-room-control-system.firebasestorage.app",
+    messagingSenderId: "398855518916",
+    appId: "1:398855518916:web:d41bd0975b543fa73b6791"
 };
 
 // Initialize Firebase
