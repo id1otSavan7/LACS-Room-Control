@@ -1,0 +1,22 @@
+:root {
+    --default-font-color: rgba(220, 220, 220, 1);
+    --default-background-color: rgba(0, 0, 0, 1);
+    --default-container-background-color: rgba(5, 5, 5, 1);
+
+    --default-font-size: 1.2rem;
+    --title-font-size: 2rem;
+
+    --default-container-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    --default-button-box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 3px 0px, rgba(255, 255, 255, 0.06) 0px 1px 2px 0px;
+
+    --default-button-color: rgba(10, 10, 10, 1);
+    --default-button-color-hovered: rgba(20, 20, 20, 1);
+    --default-button-color-activated: rgba(25, 25, 25, 1);
+    --button-font-color: rgba(25, 25, 25, 1);
+}
+
+button {
+    background-color: var(--default-button-color);
+    color: var(--default-font-color);
+    box-shadow: var(--default-button-box-shadow);
+}

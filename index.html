@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lance Andrei C. Sombillo">
+    <meta name="description" content="IoT Project that shows data from sensors and control some devices.">
+    <title>LACS Control Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="auth-wrapper"></div>
+    <main>
+        <div class="content-wrapper">
+            <section class="side-container">
+                <h3><span class="side-title">LACS</span> Control Panel</h3>
+                <nav class="side-navigation">
+                    <ul>
+                        <a href=""><li>PLACEHOLDER</li></a>
+                        <a href=""><li>PLACEHOLDER</li></a>
+                        <a href=""><li>PLACEHOLDER</li></a>
+                        <a href=""><li>PLACEHOLDER</li></a>
+                        <a href=""><li>PLACEHOLDER</li></a>
+                    </ul>
+                </nav>
+            </section>
+            <section class="dashboard-container">
+                <section class="data-section">
+                    <h3 class="header-title">Room Data Readings</h3>
+                    <div class="data-wrapper">
+                        <div class="data-container temperature">
+                            <h4>Room Temperature:</h4>
+                            <p><span id="temperature-value">0</span>°C</p>
+                        </div>
+                        <div class="data-container humidity">
+                            <h4>Room Humidity:</h4>
+                            <p><span id="humidity-value">0</span>%</p>
+                        </div>
+                        <div class="data-container motion">
+                            <h4>Motion Sensor State:</h4>
+                            <p><span id="pir-state">Inactive</span></p>
+                        </div>
+                    </div>
+                </section>
+                <section class="control-section">
+                    <h3 class="header-title">Control Devices Operation</h3>
+                    <div class="component-container">
+                        <p class="component-title">PIR Sensor Module</p>
+                        <button type="button" id="pir-sensor-module" class="event-button">Activate</button>
+                    </div>
+                    <div class="component-container">
+                        <p class="component-title">RGB LED Strip</p>
+                        <button type="button" id="rgb-led-strip" class="event-button">Activate</button>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script src="scripts/firebaseService.js" type="module"></script>
+</body>
+</html>
