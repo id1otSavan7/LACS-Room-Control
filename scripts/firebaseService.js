@@ -12,6 +12,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const auth = firebase.auth();
 
 console.log(firebaseConfig);
 
@@ -19,6 +20,8 @@ const temperatureValue = document.getElementById("temperature-value");
 const humidityValue = document.getElementById("humidity-value");
 const ledStripButton = document.getElementById("rgb-led-strip");
 const pirSensorButton = document.getElementById("pir-sensor-module");
+const loginButton = document.getElementById("login-button");
+const authInterface = document.querySelector(".auth-block");
 
 const temperatureRef = db.ref('device/lacs_esp32/sensors/temperature');
 const humidityRef = db.ref('device/lacs_esp32/sensors/humidity');
@@ -28,15 +31,40 @@ const pirSensorRef = db.ref('device/lacs_esp32/control/pir_module/state');
 let ledStripState;
 let pirSensorState;
 
+async function login(email, password) {
+    try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        console.log("User logged in: ", userCredential.user);
+        authInterface.style.display = "none";
+    } catch (error) {
+        console.error("Login error: ", error);
+        window.alert("Login error: ", error);
+    }
+}
+
+loginButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    console.log("Attempting to log in with email: ", email);
+    await login(email, password);
+});
+
 temperatureRef.on('value', (snapshot) => {
     const data = snapshot.val();
     console.log(`Temperature: ${data}`);
+    if(data === null || data === undefined){
+        temperatureValue.textContent = "N/A";
+    }
     temperatureValue.textContent = data;
 });
 
 humidityRef.on('value', (snapshot) => {
     const data = snapshot.val();
     console.log(`Humidity: ${data}`);
+    if(data === null || data === undefined){
+        humidityValue.textContent = "N/A";
+    }
     humidityValue.textContent = data;
 });
 
@@ -45,13 +73,6 @@ ledStripRef.on('value', (snapshot) => {
     console.log("Strip state is ", data);
     ledStripState = data;
     modifyButtonProperties(ledStripButton, ledStripState);
-});
-
-pirSensorRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    console.log("PIR state is ", data);
-    pirSensorState = data;
-    modifyButtonProperties(pirSensorButton, pirSensorState);
 });
 
 ledStripButton.addEventListener('mouseenter', function(){
@@ -64,33 +85,14 @@ ledStripButton.addEventListener('mouseleave', function(){
     ledStripButton.style.color = "";
 });
 
-pirSensorButton.addEventListener('mouseenter', function(){
-    pirSensorButton.style.backgroundColor = (pirSensorState) ? "rgb(255, 155, 155)" : "rgb(155, 255, 155)";
-    pirSensorButton.style.color = "rgb(25, 25, 25)";
-});
-
-pirSensorButton.addEventListener('mouseleave', function(){
-    pirSensorButton.style.backgroundColor = "";
-    pirSensorButton.style.color = "";
-});
-
-ledStripButton.onclick = function (){
+ledStripButton.addEventListener('click', function(){
     try {
         updateComponentState(ledStripRef, ledStripState, ledStripButton);
         console.log("Strip state was updated successfully...");
     } catch (error) {
         window.alert("Something went wrong => ", error); 
     }
-};
-
-pirSensorButton.onclick = function (){
-    try {
-        updateComponentState(pirSensorRef, pirSensorState, pirSensorButton);
-        console.log("Pir state was updated successfully...");
-    } catch (error) {
-        window.alert("Something went wrong => ", error);
-    }
-};
+});
 
 function modifyButtonProperties(button, state){
     button.textContent = (state) ? "Deactivate" : "Activate";

@@ -1,0 +1,70 @@
+.control-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    margin: 2vh 2vw;
+}
+
+.control-section .component-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    background-color: var(--default-container-background-color);
+    padding: 1vh 1vw;
+    margin: 1vh 0 1vh 2vw; 
+    border-radius: 15px;
+    justify-content:space-between;
+    box-shadow: var(--default-container-box-shadow);
+    height: 8vh;
+    max-height: 10vh;
+}
+
+.component-container .component-title {
+    font-size: var(--default-font-size);
+    letter-spacing: 0.2rem;
+    align-self: center;
+}
+
+.component-container .component-title::before {
+    content: "";
+    border-left: 4px solid var(--default-font-color);
+    margin-right: 10px;
+}
+
+.component-container .button-wrapper {
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-wrapper #color-picker, .button-wrapper #rgb-led-strip {
+    border-radius: 15px;
+    height: 3.6em;
+    max-height: 3.6em;
+    width: 12em;
+    max-width: 12em;
+    margin-left: 5%;
+    transition: ease-in-out 500ms;
+}
+
+.button-wrapper #color-picker {
+    max-width: 3.8em;
+    max-height: 3.4em;
+    height: 3.2em;
+    width: 3.6em;
+    min-width: 3em;
+    min-height: 2.6em;
+    padding: 1vh 0.6vw;
+    border: none;
+    background-color: var(--color-picker-background-color);
+    align-self: center;
+}
+
+#color-picker:hover {
+    width: 3.8em;
+    height: 3.4em;
+    background-color: var(--button-color-hovered);
+    border: 2px solid rgb(75,75,75);
+    box-shadow: var(--button-box-shadow);
+}

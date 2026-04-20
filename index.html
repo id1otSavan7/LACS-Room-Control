@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,56 +9,125 @@
     <title>LACS Control Panel</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="auth-wrapper"></div>
+
+    <!-- AUTHENTICATION BLOCKADE -->
+
+    <div class="auth-block">
+        <section class="login-container">
+            <h2 class="login-title">WELCOME!</h2>
+            <p class="login-context"><strong>NOTICE:</strong><br>This website is an IoT-based Control System for LACS
+                Room Control.</p>
+            <form id="login-form">
+                <input type="email" id="email" class="dark-textfield" placeholder="Email" required>
+                <input type="password" id="password" class="dark-textfield" placeholder="Password" required>
+                <button type="submit" id="login-button" function="login">LOG IN</button>
+            </form>
+            <a href="#" class="request-access">Ask for access?</a>
+        </section>
+    </div>
+
     <main>
         <div class="content-wrapper">
-            <section class="side-container">
+
+            <!-- SECTION 1: THE WEBSITE's DRAWER -->
+
+            <section class="drawer">
                 <h3><span class="side-title">LACS</span> Control Panel</h3>
                 <nav class="side-navigation">
                     <ul>
-                        <a href=""><li>PLACEHOLDER</li></a>
-                        <a href=""><li>PLACEHOLDER</li></a>
-                        <a href=""><li>PLACEHOLDER</li></a>
-                        <a href=""><li>PLACEHOLDER</li></a>
-                        <a href=""><li>PLACEHOLDER</li></a>
+                        <li>
+                            <div class="client-state-container">
+                                <h4 class="header-content">Firebase Client:</h4>
+                                <span class="content">Disconnected</span>
+                            </div>
+                        </li>
+                        <a href="">
+                            <li>PLACEHOLDER</li>
+                        </a>
+                        <a href="">
+                            <li>PLACEHOLDER</li>
+                        </a>
+                        <a href="">
+                            <li>PLACEHOLDER</li>
+                        </a>
+                        <a href="">
+                            <li>PLACEHOLDER</li>
+                        </a>
                     </ul>
                 </nav>
             </section>
+
+            <!-- SECTION 2: THE DASHBOARD -->
+
             <section class="dashboard-container">
                 <section class="data-section">
-                    <h3 class="header-title">Room Data Readings</h3>
-                    <div class="data-wrapper">
-                        <div class="data-container temperature">
-                            <h4>Room Temperature:</h4>
-                            <p><span id="temperature-value">0</span>°C</p>
+
+                    <!-- SECTION 2.1.a: ROOM DATA READINGS, LOCAL ROOM DATA -->
+
+                    <section class="room-readings-container">
+                        <h3 class="header-title">Room Data Readings</h3>
+
+                        <div class="local-data-wrapper">
+                            <!-- TEMPERATURE DATA READINGS -->
+                            <div class="data-container temperature-container">
+                                <h4><i class="fa-solid fa-temperature-half" style="font-size: 1.3rem;"></i> Room
+                                    Temperature:</h4>
+                                <p><span id="temperature-value">0</span>°C</p>
+                            </div>
+                            <!-- HUMIDITY DATA READINGS -->
+                            <div class="data-container humidity-container">
+                                <h4><i class="fa-solid fa-droplet" style="font-size: 1.3rem;"></i> Room Humidity:</h4>
+                                <p><span id="humidity-value">0</span>%</p>
+                            </div>
                         </div>
-                        <div class="data-container humidity">
-                            <h4>Room Humidity:</h4>
-                            <p><span id="humidity-value">0</span>%</p>
+                    </section>
+
+                    <!-- SECTION 2.1.b: API DATA READINGS, CITY WIDE DATA -->
+                    <section class="api-readings-container">
+                        <h3 class="header-title">API Weather Readings</h3>
+                        <div class="data-container api-container">
+                            <h4><i class="fa-solid fa-location-dot"></i> Location: <span class="local-name">...</span></h4>
+                            <p>
+                                <i class="fa-regular fa-cloud"></i> <span><strong>Weather: </strong></span><span class="local-weather">Undefined</span><br>
+                                <i class="fa-solid fa-clipboard-list"></i> <span><strong>Forecast: </strong></span><span
+                                    class="local-weather-desc">Undefined</span><br>
+                                <i class="fa-solid fa-temperature-half"></i> <span><strong>Temperature:
+                                    </strong></span><span class="local-temperature">0</span>°C<br>
+                                <i class="fa-solid fa-droplet"></i> <span><strong>Humidity: </strong></span><span
+                                    class="local-humidity">0</span>%
+                            </p>
+                            <button type="button" class="api-call-button">↺</button>
                         </div>
-                        <div class="data-container motion">
-                            <h4>Motion Sensor State:</h4>
-                            <p><span id="pir-state">Inactive</span></p>
-                        </div>
-                    </div>
+                    </section>
                 </section>
+
+                <!-- SECTION 2.2: CONTROL SECTION -->
+
                 <section class="control-section">
                     <h3 class="header-title">Control Devices Operation</h3>
-                    <div class="component-container">
-                        <p class="component-title">PIR Sensor Module</p>
-                        <button type="button" id="pir-sensor-module" class="event-button">Activate</button>
-                    </div>
+
+                    <!-- COMPONENT 1: CONTROL RGB LED STRIP -->
                     <div class="component-container">
                         <p class="component-title">RGB LED Strip</p>
-                        <button type="button" id="rgb-led-strip" class="event-button">Activate</button>
+                        <div class="button-wrapper">
+                            <input type="color" title="Change LED Strip Color?" id="color-picker" name="colorpicker"
+                                value="#ffffff">
+                            <button type="button" id="rgb-led-strip" class="event-button">Activate</button>
+                        </div>
                     </div>
                 </section>
+
             </section>
         </div>
     </main>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://kit.fontawesome.com/bfbcc97c00.js" crossorigin="anonymous"></script>
     <script src="scripts/firebaseService.js" type="module"></script>
+    <!-- <script src="scripts/weather-api.js" type="module"></script> -->
 </body>
+
 </html>

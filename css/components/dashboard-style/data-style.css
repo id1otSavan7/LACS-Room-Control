@@ -1,0 +1,78 @@
+.data-section {
+    display: flex;
+    flex-direction: row;
+    margin: 2vh 2vw;
+}
+
+.data-section .room-readings-container, .data-section .api-readings-container {
+    flex: 1;
+    background-color: var(--default-container-background-color);
+    border-radius: 25px;
+    padding: 2vh 2vw;
+    box-shadow: var(--default-container-box-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.data-section .api-readings-container {
+    flex: 2;
+    margin-left: 2vw;
+
+}
+
+.data-section .local-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch ;
+    justify-content: center;
+}
+
+.data-section .data-container {
+    flex: 1;
+    background-color: var(--primary-container-background-color);
+    position: relative;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 2vw;
+    box-shadow: var(--default-container-box-shadow);
+}
+
+.data-section .data-container h4 {
+    margin: 0;
+    margin-top: 2vh;
+}
+
+.local-data-wrapper .temperature-container {
+    max-height: 16vh;
+    margin-bottom: 2vh;
+}
+
+.local-data-wrapper .humidity-container {
+    max-height: 18vh;
+}
+
+.api-container {
+    font-size: 1rem;
+}
+
+.api-container p {
+    letter-spacing: 0.1rem;
+    padding: 1vh 1vw;
+}
+
+.api-call-button {
+    justify-self: center;
+    align-self: end;
+    margin: 0;
+    height: 4vh;
+    max-width: 2em;
+    font-weight: bold;
+    position: absolute;
+    z-index: 10;
+    bottom: 2.5vh;
+    width: 100%;
+    min-width: 2em;
+}
+
+
